@@ -51,7 +51,7 @@
 </head>
 <body>
 
-<a href="index">Back to main menu</a>
+<a href="${pageContext.request.contextPath}index">Back to main menu</a>
 
 <br/>
 <br/>
