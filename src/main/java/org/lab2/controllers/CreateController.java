@@ -45,4 +45,12 @@ public class CreateController {
         logger.debug("edit page");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/createCategory", method = RequestMethod.POST)
+    public ModelAndView addCategory(ModelAndView modelAndView, @RequestParam("categoryName") String name){
+        userServiceCategory.addCategory(name);
+        modelAndView.setViewName("redirect:categoryList");
+        logger.debug("add category with name: " + name);
+        return modelAndView;
+    }
 }

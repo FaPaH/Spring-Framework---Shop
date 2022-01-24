@@ -41,4 +41,12 @@ public class MainController {
         modelAndView.setViewName("/index");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/categoryList", method = RequestMethod.GET)
+    public ModelAndView categoryList(ModelAndView modelAndView){
+        modelAndView.addObject("categoryList", this.userServiceCategory.getAllCategory());
+        modelAndView.setViewName("categoryList");
+        logger.debug("categoryList page");
+        return modelAndView;
+    }
 }

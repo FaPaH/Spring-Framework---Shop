@@ -36,4 +36,12 @@ public class DeleteController {
         logger.debug("delete product with id: " + productId);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/deleteCategory/{categoryId}", method = RequestMethod.GET)
+    public ModelAndView deleteCategory(ModelAndView modelAndView, @PathVariable("categoryId") int categoryId){
+        userServiceCategory.removeCategory(categoryId);
+        modelAndView.setViewName("redirect:/categoryList");
+        logger.debug("delete category with id: " + categoryId);
+        return modelAndView;
+    }
 }
