@@ -7,7 +7,7 @@
 <a href="logout">logout</a> <br><br>
 
 <br>
-<a href="list">List</a>
+<a href="list">Login</a>
 <br>
 
 </body>

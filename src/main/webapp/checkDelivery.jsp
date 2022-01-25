@@ -51,67 +51,55 @@
 </head>
 <body>
 
-<a href="logout">logout</a> <br><br>
+<a href="${pageContext.request.contextPath}/list">Back to list</a>
 
-<a href="${pageContext.request.contextPath}/">Back to main menu</a>
+<c:if test="${msg != null}">
+    <h1>${msg}</h1>
+</c:if>
 
 <br/>
 <br/>
-
-<h1>Product List</h1>
 
 <security:authorize access="hasRole('ROLE_ADMIN')">
 
-<form action="${pageContext.request.contextPath}/createProduct">
-    <input type="submit" value="Add product" />
-</form>
-
-<form action="${pageContext.request.contextPath}/categoryList">
-    <input type="submit" value="Go to category list" />
-</form>
+    <form action="${pageContext.request.contextPath}/checkAllDelivery">
+        <input type="submit" value="Load all delivery's" />
+    </form>
 
 </security:authorize>
 <security:csrfInput/>
 
-<form action="${pageContext.request.contextPath}/checkList" method="post">
+<c:if test="${msg == null}">
+
+    <h1>Product List</h1>
 
     <table class="tg">
         <tr>
-            <th width="60">Delivery?</th>
             <th width="30">ID</th>
-            <th width="120">Product name</th>
-            <th width="120">Prise</th>
-            <th width="120">Category</th>
+            <th width="120">username</th>
+            <th width="120">Product ids</th>
+            <th width="120">Delivery address</th>
+            <th width="120">Phone number</th>
+            <th width="120">Total prise</th>
             <security:authorize access="hasRole('ROLE_ADMIN')">
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
+                <th width="60">Delete</th>
             </security:authorize>
-            <security:csrfInput/>
         </tr>
-        <c:forEach items="${productList}" var="product">
+        <c:forEach items="${deliveryList}" var="delivery">
             <tr>
-                <td>
-                    <input type="checkbox" name="checkedProductId" value="${product.productId}">
-                </td>
-                <td>${product.productId}</td>
-                <td>${product.productName}</td>
-                <td>${product.productPrise}</td>
-                <td>${product.productCategory}</td>
+                <td>${delivery.deliveryId}</td>
+                <td>${delivery.username}</td>
+                <td>${delivery.productIds}</td>
+                <td>${delivery.deliveryAddress}</td>
+                <td>${delivery.numberPhone}</td>
+                <td>${delivery.totalPrise}</td>
                 <security:authorize access="hasRole('ROLE_ADMIN')">
-                <td><a href="edit/<c:out value='${product.productId}'/>">Edit</a></td>
-                <td><a href="delete/<c:out value='${product.productId}'/>">Delete</a></td>
+                    <td><a href="deleteDelivery/<c:out value='${delivery.deliveryId}'/>">Delete</a></td>
                 </security:authorize>
                 <security:csrfInput/>
             </tr>
         </c:forEach>
     </table>
-
-    <input type="submit" value="Create delivery">
-</form>
-
-<form action="${pageContext.request.contextPath}/checkDelivery">
-    <input type="submit" value="Check my delivery" />
-</form>
-
+</c:if>
 </body>
 </html>

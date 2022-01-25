@@ -1,8 +1,10 @@
 package org.lab2.controller;
 
 import org.lab2.service.UserServiceCategory;
+import org.lab2.service.UserServiceDelivery;
 import org.lab2.service.UserServiceProduct;
 import org.apache.log4j.Logger;
+import org.lab2.service.UserServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,14 @@ public class DeleteController {
     private UserServiceProduct userServiceProduct;
 
     private UserServiceCategory userServiceCategory;
+
+    private UserServiceDelivery userServiceDelivery;
+
+    @Autowired
+    public void setUserServiceDelivery(UserServiceDelivery userServiceDelivery) {
+        this.userServiceDelivery = userServiceDelivery;
+    }
+
 
     @Autowired
     public void setUserServiceCategory(UserServiceCategory userServiceCategory) {
@@ -45,6 +55,15 @@ public class DeleteController {
         userServiceCategory.removeCategory(categoryId);
         modelAndView.setViewName("redirect:/categoryList");
         logger.debug("delete category with id: " + categoryId);
+        return modelAndView;
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/deleteDelivery/{deliveryId}", method = RequestMethod.GET)
+    public ModelAndView deleteDelivery(ModelAndView modelAndView, @PathVariable("deliveryId") int deliveryId){
+        userServiceDelivery.removeDelivery(deliveryId);
+        modelAndView.setViewName("redirect:/checkDelivery");
+        logger.debug("delete category with id: " + deliveryId);
         return modelAndView;
     }
 }

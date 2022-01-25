@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1><strong>Sorry, but you do not have permission to view this page.</strong></h1>
+<h1><strong>You do not have permission</strong></h1>
 <a href="${pageContext.request.contextPath}/"><h1>Back to main menu</h1></a>
 </body>
 </html>
