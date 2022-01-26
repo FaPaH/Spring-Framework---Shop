@@ -30,7 +30,7 @@ public class DAOUserImpl implements DAOUser {
 
     @Override
     public int getUserIdByLogin(String login) {
-        int userId = 0;
+        int userId = -1;
         try (Connection connection = daoConnection.getConnection()){
             statement = connection.prepareStatement("SELECT USER_ID FROM LAB2_USERS WHERE USERNAME = ?");
             statement.setString(1, login);
@@ -43,6 +43,21 @@ public class DAOUserImpl implements DAOUser {
             close();
         }
         return userId;
+    }
+
+    @Override
+    public void createUser(String login, String password){
+        try (Connection connection = daoConnection.getConnection()){
+            statement = connection.prepareStatement("INSERT INTO LAB2_USERS(USER_ID, USERNAME, PASSWORD, ROLE_ID, ENABLE) " +
+                    "VALUES (LAB2_USERS_SEQ.nextval, ?, ?, 2, 1)");
+            statement.setString(1, login);
+            statement.setString(2, password);
+            resultSet = statement.executeQuery();
+        } catch (SQLException e) {
+            logger.error("SQLException in addDelivery() ", e);
+        } finally {
+            close();
+        }
     }
 
     private void close() {

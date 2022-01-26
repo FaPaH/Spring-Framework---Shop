@@ -104,7 +104,7 @@ public class DAOConnectionImpl implements DAOConnection {
             while (resultSet.next()) {
                 count = resultSet.getInt("CNT");
             }
-//            if (count == 0) {
+            if (count == 0) {
                 File drop = ResourceUtils.getFile("classpath:drop.sql");
                 File create = ResourceUtils.getFile("classpath:db.sql");
                 File insert = ResourceUtils.getFile("classpath:insert.sql");
@@ -113,7 +113,7 @@ public class DAOConnectionImpl implements DAOConnection {
                 scriptRunner.runScript(new BufferedReader(new FileReader(drop)));
                 scriptRunner.runScript(new BufferedReader(new FileReader(create)));
                 scriptRunner.runScript(new BufferedReader(new FileReader(insert)));
-//            }
+            }
         } catch (NullPointerException | IOException e) {
             logger.error("Error in create database ", e);
         } finally {

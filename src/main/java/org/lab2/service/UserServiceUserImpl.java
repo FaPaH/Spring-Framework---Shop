@@ -23,4 +23,16 @@ public class UserServiceUserImpl implements UserServiceUser{
         logger.debug("called addProduct() method. UserServiceImpl.class");
         return daoUser.getUserIdByLogin(login);
     }
+
+    @Override
+    public boolean isUserExist(String login){
+        logger.debug("called addProduct() method. UserServiceImpl.class");
+        return daoUser.getUserIdByLogin(login) == -1;
+    }
+
+    @Override
+    public void createUser(String login, String password){
+        logger.debug("called addProduct() method. UserServiceImpl.class");
+        daoUser.createUser(login,password);
+    }
 }
