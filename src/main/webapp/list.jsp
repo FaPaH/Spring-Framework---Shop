@@ -64,6 +64,14 @@
 
 <h1>Product List</h1>
 
+Search product by name:
+<form action="${pageContext.request.contextPath}/searchByName" method="post">
+<pre>
+    <input type="text" name="searchName" placeholder="Product name"/> <input type="submit" value="search" />
+</pre>
+    <security:csrfInput/>
+</form>
+
 <security:authorize access="hasRole('ROLE_ADMIN')">
 
 <form action="${pageContext.request.contextPath}/createProduct">

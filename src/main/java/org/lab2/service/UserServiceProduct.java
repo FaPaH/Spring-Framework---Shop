@@ -15,4 +15,6 @@ public interface UserServiceProduct {
     List<Products> getAllProducts();
 
     Products findProductById(int productId);
+
+    List<Products> findProductByName(String searchName);
 }

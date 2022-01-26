@@ -91,7 +91,7 @@ public class MainController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @RequestMapping(value = "/checkList", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkList", method = RequestMethod.POST)
     public ModelAndView checkList(ModelAndView modelAndView,
                                   @RequestParam(value = "checkedProductId", defaultValue = "null") List<String> checkedProductId){
 

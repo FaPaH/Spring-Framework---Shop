@@ -49,4 +49,10 @@ public class UserServiceProductImpl implements UserServiceProduct{
         logger.debug("called findProductById() method. UserServiceImpl.class");
         return daoProduct.findProductById(productId);
     }
+
+    @Override
+    public List<Products> findProductByName(String searchName){
+        logger.debug("called findProductById() method. UserServiceImpl.class");
+        return daoProduct.findProductByName(searchName);
+    }
 }

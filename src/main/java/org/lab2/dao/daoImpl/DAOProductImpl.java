@@ -124,6 +124,26 @@ public class DAOProductImpl implements DAOProduct {
         return productsList.get(0);
     }
 
+    @Override
+    public List<Products> findProductByName(String searchName){
+        try (Connection connection = daoConnection.getConnection()) {
+            statement = connection.prepareStatement("SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRISE, C.CATEGORY_NAME " +
+                    "FROM LAB2_PRODUCTS P " +
+                    "LEFT OUTER JOIN LAB2_CATEGORY C " +
+                    "ON P.CATEGORY_ID = C.CATEGORY_ID " +
+                    "WHERE P.PRODUCT_NAME LIKE ? " +
+                    "ORDER BY P.PRODUCT_ID ASC");
+            statement.setString(1, "%" + searchName + "%");
+            resultSet = statement.executeQuery();
+            productsList = productParser.parseAllProducts(resultSet);
+        } catch (SQLException e) {
+            logger.error("SQLException in getAllProducts() ", e);
+        } finally {
+            close();
+        }
+        return productsList;
+    }
+
     private void close() {
         try {
             resultSet.close();
