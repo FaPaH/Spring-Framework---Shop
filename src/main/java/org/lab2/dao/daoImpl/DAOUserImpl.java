@@ -20,8 +20,6 @@ public class DAOUserImpl implements DAOUser {
 
     private DAOConnection daoConnection;
 
-    private int userId;
-
     private ResultSet resultSet;
     private PreparedStatement statement;
 
@@ -32,12 +30,16 @@ public class DAOUserImpl implements DAOUser {
 
     @Override
     public int getUserIdByLogin(String login) {
+        int userId = -1;
         try (Connection connection = daoConnection.getConnection()){
-            statement = connection.prepareStatement("select count(1) as USER_ID from LAB2_USERS where USERNAME = ?");
+            statement = connection.prepareStatement("select USER_ID from LAB2_USERS where USERNAME = ?");
             statement.setString(1, login);
             resultSet = statement.executeQuery();
-            resultSet.next();
-            userId = resultSet.getInt("USER_ID");
+            if (resultSet.next()) {
+                userId = resultSet.getInt("USER_ID");
+                System.out.println(userId);
+                return userId;
+            }
         } catch (SQLException e) {
             logger.error("SQLException in addDelivery() ", e);
         } finally {

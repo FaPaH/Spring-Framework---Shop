@@ -24,8 +24,6 @@ public class MainController {
 
     private static Logger logger = Logger.getLogger(MainController.class);
 
-    private int userId;
-
     private List<Delivery> deliveryList;
 
     private UserServiceProduct userServiceProduct;
@@ -98,8 +96,6 @@ public class MainController {
         List<Products> productList = new ArrayList<>();
         int totalPrise = 0;
 
-        System.out.print("checkList " + checkedProductId);
-
         if(!checkedProductId.get(0).equals("null")){
             for(String str : checkedProductId){
                 int id = Integer.parseInt(str);
@@ -111,8 +107,6 @@ public class MainController {
             modelAndView.addObject("msg", "You didnt click on any product");
         }
 
-        System.out.print("checkList after check" + productList);
-
         modelAndView.addObject("deliveryList", productList);
         modelAndView.addObject("totalPrise", totalPrise);
         modelAndView.setViewName("deliveryList");
@@ -122,8 +116,11 @@ public class MainController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(value = "/checkDelivery", method = RequestMethod.GET)
     public ModelAndView checkDelivery(Principal principal, ModelAndView modelAndView){
-        userId = userServiceUser.getUserIdByLogin(principal.getName());
+        int userId = userServiceUser.getUserIdByLogin(principal.getName());
         deliveryList = userServiceDelivery.findDeliveryByUserId(userId);
+
+        System.out.println("user id " + userId);
+        System.out.println(principal.getName());
 
         if (deliveryList.isEmpty()){
             modelAndView.addObject("msg", "Your delivery list is empty");
