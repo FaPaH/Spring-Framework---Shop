@@ -20,7 +20,7 @@ import java.util.List;
 @Scope(value = "singleton")
 public class DAOProductImpl implements DAOProduct {
 
-    private static Logger logger = Logger.getLogger(DAOConnectionImpl.class);
+    private static Logger logger = Logger.getLogger(DAOProductImpl.class);
 
     private DAOConnection daoConnection;
 
@@ -137,7 +137,7 @@ public class DAOProductImpl implements DAOProduct {
             resultSet = statement.executeQuery();
             productsList = productParser.parseAllProducts(resultSet);
         } catch (SQLException e) {
-            logger.error("SQLException in getAllProducts() ", e);
+            logger.error("SQLException in findProductByName() ", e);
         } finally {
             close();
         }

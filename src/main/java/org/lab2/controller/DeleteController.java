@@ -4,7 +4,6 @@ import org.lab2.service.UserServiceCategory;
 import org.lab2.service.UserServiceDelivery;
 import org.lab2.service.UserServiceProduct;
 import org.apache.log4j.Logger;
-import org.lab2.service.UserServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -63,7 +62,7 @@ public class DeleteController {
     public ModelAndView deleteDelivery(ModelAndView modelAndView, @PathVariable("deliveryId") int deliveryId){
         userServiceDelivery.removeDelivery(deliveryId);
         modelAndView.setViewName("redirect:/checkDelivery");
-        logger.debug("delete category with id: " + deliveryId);
+        logger.debug("delete delivery with id: " + deliveryId);
         return modelAndView;
     }
 }

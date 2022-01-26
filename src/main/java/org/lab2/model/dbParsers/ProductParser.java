@@ -23,7 +23,7 @@ public class ProductParser {
                 personals.add(getProducts(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("SQLException in getAllPersonal() ", e);
+            logger.error("SQLException in parseAllProducts() ", e);
         }
         return personals;
     }
@@ -37,7 +37,7 @@ public class ProductParser {
 
             products = new Products(productId, productName, productPrise, productCategory);
         } catch (SQLException e) {
-            logger.error("SQLException in getPersonal() ", e);
+            logger.error("SQLException in getProducts() ", e);
         }
         return products;
     }

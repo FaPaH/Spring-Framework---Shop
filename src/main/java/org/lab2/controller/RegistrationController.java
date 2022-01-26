@@ -24,7 +24,7 @@ public class RegistrationController {
     @RequestMapping(value = "/registrationPage", method = RequestMethod.GET)
     public ModelAndView registrationPage(ModelAndView modelAndView){
         modelAndView.setViewName("/registrationPage");
-        logger.debug("categoryList page");
+        logger.debug("registration page");
         return modelAndView;
     }
 
@@ -40,7 +40,7 @@ public class RegistrationController {
             modelAndView.addObject("msg", "Now you can login as: " + login);
             modelAndView.setViewName("/index");
         }
-        logger.debug("categoryList page");
+        logger.debug("register new user with name " + login);
         return modelAndView;
     }
 }

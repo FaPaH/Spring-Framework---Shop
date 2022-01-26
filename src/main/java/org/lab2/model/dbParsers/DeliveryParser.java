@@ -2,7 +2,7 @@ package org.lab2.model.dbParsers;
 
 import org.apache.log4j.Logger;
 import org.lab2.model.Delivery;
-import org.lab2.model.Products;
+
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -25,7 +25,7 @@ public class DeliveryParser {
                 deliveries.add(getDelivery(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("SQLException in getAllPersonal() ", e);
+            logger.error("SQLException in parseAllDelivery() ", e);
         }
         return deliveries;
     }
@@ -51,7 +51,7 @@ public class DeliveryParser {
 
             delivery = new Delivery(deliveryId, userId, username, productIdsList, address, phoneNumber, totalPrise);
         } catch (SQLException e) {
-            logger.error("SQLException in getPersonal() ", e);
+            logger.error("SQLException in getDelivery() ", e);
         }
         return delivery;
     }

@@ -4,9 +4,7 @@ import org.apache.log4j.Logger;
 import org.lab2.dao.DAOConnection;
 import org.lab2.dao.DAODelivery;
 import org.lab2.model.Delivery;
-import org.lab2.model.Products;
 import org.lab2.model.dbParsers.DeliveryParser;
-import org.lab2.model.dbParsers.ProductParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -52,8 +50,6 @@ public class DAODeliveryImpl implements DAODelivery {
             statement.setInt(1, userId);
             statement.setString(2, username);
 
-            System.out.println("checkedList before parse in string " + productIdsList);
-
             StringBuilder productIds = new StringBuilder();
             for (Integer integer : productIdsList) {
                 if (productIds.toString().equals("")) {
@@ -62,8 +58,6 @@ public class DAODeliveryImpl implements DAODelivery {
                     productIds.append(" ").append(integer);
                 }
             }
-
-            System.out.println("checkedList after parse in string " + productIds);
 
             statement.setString(3, String.valueOf(productIds.toString()));
             statement.setString(4, deliveryAddress);
@@ -84,7 +78,7 @@ public class DAODeliveryImpl implements DAODelivery {
             statement.setInt(1, deliveryId);
             resultSet = statement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in addDelivery() ", e);
+            logger.error("SQLException in removeDelivery() ", e);
         } finally {
             close();
         }
@@ -100,7 +94,7 @@ public class DAODeliveryImpl implements DAODelivery {
             resultSet = statement.executeQuery();
             deliveryList = deliveryParser.parseAllDelivery(resultSet);
         } catch (SQLException e) {
-            logger.error("SQLException in getAllProducts() ", e);
+            logger.error("SQLException in getAllDelivery() ", e);
         } finally {
             close();
         }
@@ -119,7 +113,7 @@ public class DAODeliveryImpl implements DAODelivery {
             resultSet = statement.executeQuery();
             deliveryList = deliveryParser.parseAllDelivery(resultSet);
         } catch (SQLException e) {
-            logger.error("SQLException in getAllProducts() ", e);
+            logger.error("SQLException in findDeliveryByUserId() ", e);
         } finally {
             close();
         }

@@ -2,7 +2,6 @@ package org.lab2.service;
 
 import org.apache.log4j.Logger;
 import org.lab2.dao.DAODelivery;
-import org.lab2.dao.DAOProduct;
 import org.lab2.model.Delivery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,19 +28,19 @@ public class UserServiceDeliveryImpl implements UserServiceDelivery{
 
     @Override
     public void removeDelivery(int deliveryId) {
-        logger.debug("called addDelivery() method. UserServiceDeliveryImpl.class");
+        logger.debug("called removeDelivery() method. UserServiceDeliveryImpl.class");
         daoDelivery.removeDelivery(deliveryId);
     }
 
     @Override
     public List<Delivery> getAllDelivery() {
-        logger.debug("called addDelivery() method. UserServiceDeliveryImpl.class");
+        logger.debug("called getAllDelivery() method. UserServiceDeliveryImpl.class");
         return daoDelivery.getAllDelivery();
     }
 
     @Override
     public List<Delivery> findDeliveryByUserId(int userId) {
-        logger.debug("called addDelivery() method. UserServiceDeliveryImpl.class");
+        logger.debug("called findDeliveryByUserId() method. UserServiceDeliveryImpl.class");
         return daoDelivery.findDeliveryByUserId(userId);
     }
 }

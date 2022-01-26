@@ -48,7 +48,7 @@ public class DAOCategoryImpl implements DAOCategory {
             statement.setString(1, name);
             resultSet = statement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in addProduct() ", e);
+            logger.error("SQLException in addCategory() ", e);
         } finally {
             close();
         }
@@ -61,7 +61,7 @@ public class DAOCategoryImpl implements DAOCategory {
             statement.setInt(1, categoryId);
             resultSet = statement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in getAllCategory() ", e);
+            logger.error("SQLException in removeCategory() ", e);
         } finally {
             close();
         }

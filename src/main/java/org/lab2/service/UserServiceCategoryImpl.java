@@ -28,11 +28,6 @@ public class UserServiceCategoryImpl implements UserServiceCategory{
     }
 
     @Override
-    public void updateCategory(int categoryId, String categoryName) {
-
-    }
-
-    @Override
     public void removeCategory(int categoryId) {
         logger.debug("called removeCategory() method. UserServiceCategoryImpl.class");
         daoCategory.removeCategory(categoryId);

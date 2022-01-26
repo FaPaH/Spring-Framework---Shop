@@ -52,7 +52,7 @@ public class UserServiceProductImpl implements UserServiceProduct{
 
     @Override
     public List<Products> findProductByName(String searchName){
-        logger.debug("called findProductById() method. UserServiceImpl.class");
+        logger.debug("called findProductByName() method. UserServiceImpl.class");
         return daoProduct.findProductByName(searchName);
     }
 }

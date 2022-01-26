@@ -110,6 +110,7 @@ public class MainController {
         modelAndView.addObject("deliveryList", productList);
         modelAndView.addObject("totalPrise", totalPrise);
         modelAndView.setViewName("deliveryList");
+        logger.debug("checkList page with id " + checkedProductId);
         return modelAndView;
     }
 
@@ -129,7 +130,7 @@ public class MainController {
         }
 
         modelAndView.setViewName("/checkDelivery");
-        logger.debug("categoryList page");
+        logger.debug("checkDelivery page in account " + principal.getName());
         return modelAndView;
     }
 
@@ -146,7 +147,7 @@ public class MainController {
         }
 
         modelAndView.setViewName("/checkDelivery");
-        logger.debug("categoryList page");
+        logger.debug("admin check all deliveries");
         return modelAndView;
     }
 }

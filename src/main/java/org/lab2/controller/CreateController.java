@@ -7,9 +7,6 @@ import org.apache.log4j.Logger;
 import org.lab2.service.UserServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -90,7 +87,7 @@ public class CreateController {
         userServiceDelivery.addDelivery(userServiceUser.getUserIdByLogin(principal.getName()),
                 name, checkedListId, address, phoneNumber, totalPrise);
         modelAndView.setViewName("redirect:/checkDelivery");
-        logger.debug("add category with name: " + name);
+        logger.debug("create delivery with user name" + name);
         return modelAndView;
     }
 }

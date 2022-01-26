@@ -6,7 +6,6 @@ import org.lab2.service.UserServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SearchController {
+
+    private static Logger logger = Logger.getLogger(SearchController.class);
 
     private UserServiceProduct userServiceProduct;
 
@@ -29,8 +30,6 @@ public class SearchController {
         this.userServiceProduct = userServiceProduct;
     }
 
-    private static Logger logger = Logger.getLogger(SearchController.class);
-
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(value = "/searchByName", method = RequestMethod.POST)
     public ModelAndView searchByName(ModelAndView modelAndView, @RequestParam(value = "searchName", defaultValue = "") String searchName) {
@@ -41,7 +40,7 @@ public class SearchController {
         } else {
             modelAndView.addObject("productList", userServiceProduct.findProductByName(searchName));
         }
-        logger.debug("main index page");
+        logger.debug("searching product by " + searchName);
         modelAndView.setViewName("/list");
         return modelAndView;
     }

@@ -8,8 +8,6 @@ public interface UserServiceCategory {
 
     void addCategory(String name);
 
-    void updateCategory(int categoryId, String categoryName);
-
     void removeCategory(int categoryId);
 
     List<Category> getAllCategory();

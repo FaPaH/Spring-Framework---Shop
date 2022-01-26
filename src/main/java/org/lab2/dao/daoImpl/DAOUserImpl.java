@@ -41,7 +41,7 @@ public class DAOUserImpl implements DAOUser {
                 return userId;
             }
         } catch (SQLException e) {
-            logger.error("SQLException in addDelivery() ", e);
+            logger.error("SQLException in getUserIdByLogin() ", e);
         } finally {
             close();
         }
@@ -57,7 +57,7 @@ public class DAOUserImpl implements DAOUser {
             statement.setString(2, password);
             resultSet = statement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in addDelivery() ", e);
+            logger.error("SQLException in createUser() ", e);
         } finally {
             close();
         }
