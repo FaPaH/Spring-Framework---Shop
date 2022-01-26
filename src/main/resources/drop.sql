@@ -2,7 +2,6 @@
 drop table LAB2_CATEGORY cascade constraints;
 drop table LAB2_PRODUCTS cascade constraints;
 drop table LAB2_USERS cascade constraints;
--- drop table LAB2_USERS_TEST cascade constraints;
 drop table LAB2_ROLES cascade constraints;
 drop table LAB2_DELIVERY cascade constraints;
 

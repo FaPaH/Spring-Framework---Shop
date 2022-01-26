@@ -21,5 +21,9 @@
 <a href="registrationPage">Registration</a>
 <br>
 
+Login as admin: admin/admin
+<br>
+Login as user: user/user
+
 </body>
 </html>
