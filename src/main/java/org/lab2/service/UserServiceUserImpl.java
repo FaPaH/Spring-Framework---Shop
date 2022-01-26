@@ -27,7 +27,7 @@ public class UserServiceUserImpl implements UserServiceUser{
     @Override
     public boolean isUserExist(String login){
         logger.debug("called addProduct() method. UserServiceImpl.class");
-        return daoUser.getUserIdByLogin(login) == -1;
+        return daoUser.getUserIdByLogin(login) == 0;
     }
 
     @Override

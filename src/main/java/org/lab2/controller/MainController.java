@@ -73,8 +73,9 @@ public class MainController {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(value = "/list",  method = RequestMethod.GET)
-    public ModelAndView productList(ModelAndView modelAndView){
+    public ModelAndView productList(Principal principal, ModelAndView modelAndView){
         modelAndView.addObject("productList", userServiceProduct.getAllProducts());
+        modelAndView.addObject("msg", "You login as: " + principal.getName());
         modelAndView.setViewName("/list");
         logger.debug("productList page");
         return modelAndView;

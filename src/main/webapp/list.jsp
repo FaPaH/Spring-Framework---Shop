@@ -58,6 +58,10 @@
 <br/>
 <br/>
 
+<c:if test="${msg != null}">
+    <h1>${msg}</h1>
+</c:if>
+
 <h1>Product List</h1>
 
 <security:authorize access="hasRole('ROLE_ADMIN')">
