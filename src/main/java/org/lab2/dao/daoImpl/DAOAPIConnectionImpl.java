@@ -27,9 +27,9 @@ public class DAOAPIConnectionImpl implements DAOAPIConnection {
     }
 
     @Override
-    public String getMessage(){
+    public String getMessage(String movieName){
         try {
-            URL url = new URL(labUrl);
+            URL url = new URL(labUrl + movieName);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");

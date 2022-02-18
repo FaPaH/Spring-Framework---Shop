@@ -23,7 +23,9 @@
 
 <form action="${pageContext.request.contextPath}/message" method="get">
 <pre>
-    <input type="submit" value="Get message" />
+    <input type="text" name="movieName" required placeholder="Movie name"/>
+
+    <input type="submit" value="Get movie" />
 </pre>
 </form>
 

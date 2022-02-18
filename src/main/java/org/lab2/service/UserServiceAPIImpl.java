@@ -18,7 +18,7 @@ public class UserServiceAPIImpl implements UserServiceAPI{
     }
 
     @Override
-    public String getMessage(){
-        return daoapiConnection.getMessage();
+    public String getMessage(String movieName){
+        return daoapiConnection.getMessage(movieName);
     }
 }

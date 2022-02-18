@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,9 +22,11 @@ public class APIController {
     }
 
     @RequestMapping(value = "/message", method = RequestMethod.GET)
-    public ModelAndView index(ModelAndView modelAndView) {
-        String msg = userServiceAPIImpl.getMessage();
-        System.out.println(msg);
+    public ModelAndView getMovie(ModelAndView modelAndView,
+                              @RequestParam(value = "movieName", defaultValue = "No value") String movieName) {
+        logger.info("Calling getMovie");
+
+        String msg = userServiceAPIImpl.getMessage(movieName);
         modelAndView.addObject("msg", msg);
         modelAndView.setViewName("message");
         return modelAndView;
