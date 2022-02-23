@@ -19,10 +19,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Hashtable;
 
 @PropertySource("classpath:datasource-cfg.properties")
@@ -96,10 +93,10 @@ public class DAOConnectionImpl implements DAOConnection {
     }
 
     @PostConstruct
-    public void dataCreate() throws SQLException {
+    public void dataCreate() {
         try {
             connect();
-            statement = connection.prepareStatement("select count(1) as cnt from user_tables where table_name like '%LAB2%'");
+            statement = connection.prepareStatement("select count(1) as CNT from user_tables where table_name like '%LAB2%'");
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 count = resultSet.getInt("CNT");
@@ -114,7 +111,7 @@ public class DAOConnectionImpl implements DAOConnection {
                 scriptRunner.runScript(new BufferedReader(new FileReader(create)));
                 scriptRunner.runScript(new BufferedReader(new FileReader(insert)));
             }
-        } catch (NullPointerException | IOException e) {
+        } catch (NullPointerException | IOException | SQLException e) {
             logger.error("Error in create database ", e);
         } finally {
             try {
